@@ -5,16 +5,16 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 alias so="source ~/.zshrc"
-
-alias zshf="nvim ~/Personal/dotfiles/.zshrc"
-alias nvimf="nvim ~/Personal/dotfiles/nvim"
+alias st="git status"
+alias df="git diff"
 
 typeset -A locations
 locations=(
   nvim  "/home/bluedec/Personal/dotfiles/nvim"
-  zsh   "/home/bluedec/Personal/dotfiles/.zshrc"
+  zsh   "/home/bluedec/Personal/dotfiles/zsh/.zshrc"
   dot   "/home/bluedec/Personal/dotfiles/"
   pers  "/home/bluedec/Personal/"
+  loc   "/home/bluedec/.local/"
 )
 
 # CD into folder
@@ -27,8 +27,8 @@ function w() {
   fi
 }
 
-# Nvim into file
-function o() {
+# Edit file
+function e() {
   local key=$1
   if [[ -n ${locations[$key]} ]]; then
     nvim "${locations[$key]}" || echo "Failed to open into '${locations[$key]}'"
@@ -37,6 +37,14 @@ function o() {
   fi
 }
 
+
+# Change tab title (using wezterm cli)
+function ch() {
+  local title=$1
+  wezterm cli set-tab-title "$title" 
+}
+
+export PATH="$HOME/.local/bin:$PATH"
 
 
 

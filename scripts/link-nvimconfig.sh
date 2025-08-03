@@ -9,7 +9,7 @@ TARGET_DIR="$HOME/.config/nvim"
 # Source config files inside your dotfiles repo
 SOURCE="$DOTFILES_DIR/nvim"
 
-echo "Creating symlinks for NVIM configs..."
+echo "Creating symlinks for Nvim config..."
 
 # Create symlink for personal config
 if [ -e "$TARGET_DIR" ]; then
@@ -17,7 +17,7 @@ if [ -e "$TARGET_DIR" ]; then
   mv "$TARGET_DIR" "$TARGET_DIR"_BAK
 fi
 ln -sf "$SOURCE" "$TARGET_DIR"
-echo "Symlinked NVIM config."
+echo "Symlinked Nvim config."
 
 echo "Done!"
 
