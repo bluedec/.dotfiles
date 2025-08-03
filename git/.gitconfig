@@ -1,0 +1,19 @@
+[user]
+  name = Jesus Saez
+  email = yisussaez@gmail.com
+
+[alias]
+  st = status
+  co = checkout
+  br = branch
+  ci = commit
+  lg = log --oneline --graph --decorate
+  amend = commit --amend --no-edit
+  last = log -1 HEAD
+
+
+[includeIf "gitdir:~/Personal/"]
+  path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/Work/"]
+  path = ~/.gitconfig-work
