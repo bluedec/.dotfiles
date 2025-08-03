@@ -1,0 +1,10 @@
+[user]
+  name = Jesus Saez
+  email = yisussaez@gmail.com
+
+[core]
+  editor = nvim
+  sshCommand = ssh -i ~/path/to/your/shh-key
+
+
+
