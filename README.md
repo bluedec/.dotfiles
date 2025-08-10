@@ -7,6 +7,7 @@ It includes configs for:
 - `git` (with separate profiles for personal/work use)
 - `neovim`
 - `zsh`
+- `wezterm`
 - Symlink automation
 - Install scripts for easy setup on a new system
 

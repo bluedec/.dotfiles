@@ -8,5 +8,6 @@ return {
   config = function()
     vim.keymap.set("n", "<leader>pf", ":FzfLua files<CR>");
     vim.keymap.set("n", "<leader>pg", ":FzfLua resume<CR>");
+    vim.keymap.set("n", "<leader>gp", ":FzfLua grep_project<CR>");
   end,
 }

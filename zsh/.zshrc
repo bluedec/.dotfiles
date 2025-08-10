@@ -8,13 +8,18 @@ alias so="source ~/.zshrc"
 alias st="git status"
 alias df="git diff"
 
+
 typeset -A locations
 locations=(
-  nvim  "/home/bluedec/Personal/dotfiles/nvim"
-  zsh   "/home/bluedec/Personal/dotfiles/zsh/.zshrc"
-  dot   "/home/bluedec/Personal/dotfiles/"
-  pers  "/home/bluedec/Personal/"
-  loc   "/home/bluedec/.local/"
+  nvim  "$HOME/Personal/dotfiles/nvim"
+  zsh   "$HOME/Personal/dotfiles/zsh/.zshrc"
+  dot   "$HOME/Personal/dotfiles/"
+  pers  "$HOME/Personal/"
+  wez   "$HOME/Personal/dotfiles/wezterm/.wezterm.lua"
+  loc   "$HOME/.local/"
+  i3    "$HOME/.config/i3"
+  conf  "$HOME/.config/"
+  proy  "$HOME/Personal/proyects"
 )
 
 # CD into folder
