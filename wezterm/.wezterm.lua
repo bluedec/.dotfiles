@@ -18,8 +18,8 @@ config.webgpu_power_preference = "HighPerformance";
 
 config.keys = {
   -- displace tabs 
-	{ key = "s", mods = "CTRL", action = act.MoveTabRelative(1) },
-	{ key = "a", mods = "CTRL", action = act.MoveTabRelative(-1) },
+	{ key = "s", mods = "CTRL|ALT", action = act.MoveTabRelative(1) },
+	{ key = "a", mods = "CTRL|ALT", action = act.MoveTabRelative(-1) },
   -- move tabs relatively
   { key = "s", mods = "SHIFT|ALT", action = act.ActivateTabRelative(1) },
 	{ key = "a", mods = "SHIFT|ALT", action = act.ActivateTabRelative(-1) },
