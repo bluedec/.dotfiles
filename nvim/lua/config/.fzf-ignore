@@ -1,0 +1,10 @@
+# exclude specific directories
+node_modules/
+.git/
+
+# Exclude specific files types
+*.jpeg
+*.jpg
+*.png
+*.gif
+*.zip
