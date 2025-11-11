@@ -9,4 +9,7 @@ By default, i3status looks for configuration files in the following order:
 4. /etc/i3status.conf
 
 
+If a config.ini file is found in /etc/polybar/ then that will be the one used, replace the contents
+of that file with the ones at `polybar/config.ini`
+
 

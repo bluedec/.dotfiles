@@ -5,7 +5,7 @@ return {
   build = ':TSUpdate',
   config = function ()
     require'nvim-treesitter.configs'.setup {
-      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "css", "tsx" },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = false,

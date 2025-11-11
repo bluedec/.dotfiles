@@ -8,8 +8,7 @@ return {
   },
   config = function()
     -- keymaps
-    --vim.keymap.set("n", "<leader>e", ":Neotree<CR>");
-    vim.keymap.set("n", "<Tab>", ":Neotree<CR>");
+    vim.keymap.set("n", "<leader>e", ":Neotree<CR>");
 
     require("neo-tree").setup({
       event_handlers = {

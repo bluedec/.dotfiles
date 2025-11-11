@@ -8,4 +8,11 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wildignore:append "**/node_modules/*"
+vim.opt.wrap = false
+vim.opt.undofile = true;
+vim.opt.swapfile = false;
+vim.opt.verbose = 0;
+vim.lsp.set_log_level("OFF")
+
+
 

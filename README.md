@@ -20,5 +20,5 @@ To set up everything:
 ```bash
 git clone git@github.com:yourusername/dotfiles.git ~/.files
 cd ~/.files
-bash install.bash
+bash install.sh
 

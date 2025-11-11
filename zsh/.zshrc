@@ -4,10 +4,12 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Path to Zig
+export PATH="$PATH:/home/bluedec/Documents/Installations/zig/build/stage3/bin"
+
 alias so="source ~/.zshrc"
 alias st="git status"
 alias df="git diff"
-
 
 typeset -A locations
 locations=(
@@ -126,7 +128,17 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+
+#
 # User configuration
+#
+
+# Replace ls with lsd
+alias ls='lsd'
+alias l='lsd -lh'      # long format
+alias la='lsd -lah'    # all files, long
+alias ll='lsd -lh'     # long format, human-readable
+alias lsa='lsd -lah'   # all files, human-readable
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
