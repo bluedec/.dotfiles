@@ -12,3 +12,16 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     max_height = 10,     -- upper limit
   }
 )
+
+vim.g.clipboard = {
+  name = "wl-clipboard",
+  copy = {
+    ["+"] = "wl-copy",
+    ["*"] = "wl-copy",
+  },
+  paste = {
+    ["+"] = "wl-paste --no-newline",
+    ["*"] = "wl-paste --no-newline",
+  },
+}
+

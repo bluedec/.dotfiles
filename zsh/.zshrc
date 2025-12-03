@@ -2,14 +2,17 @@
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # Path to Zig
-export PATH="$PATH:/home/bluedec/Documents/Installations/zig/build/stage3/bin"
+export PATH="$PATH:/home/julien/Documents/Installations/zig/build/stage3/bin"
 
 alias so="source ~/.zshrc"
+alias zshf="nvim ~/.zshrc"
 alias st="git status"
 alias df="git diff"
+alias nixc="sudo nvim /etc/nixos/configuration.nix"
+alias hypc="nvim ~/.config/hypr/hyprland.conf"
 
 typeset -A locations
 locations=(
@@ -17,11 +20,14 @@ locations=(
   zsh   "$HOME/Personal/dotfiles/zsh/.zshrc"
   dot   "$HOME/Personal/dotfiles/"
   pers  "$HOME/Personal/"
-  wez   "$HOME/Personal/dotfiles/wezterm/.wezterm.lua"
+  wez   "$HOME/Personal/dotfiles/wezterm/wezterm.lua"
   loc   "$HOME/.local/"
   i3    "$HOME/.config/i3"
   conf  "$HOME/.config/"
   proy  "$HOME/Personal/proyects"
+  nix   "/etc/nixos/"
+  hyp   "$HOME/.config/hypr/"
+  hyper "$HOME/.config/hypr/hyprland.conf"
 )
 
 # CD into folder
@@ -53,22 +59,6 @@ function ch() {
 
 export PATH="$HOME/.local/bin:$PATH"
 
-
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-
-ZSH_THEME="catppuccin"
-CATPPUCCIN_FLAVOR="flappe" # Required! Options: mocha, flappe, macchiato, latte
-CATPPUCCIN_SHOW_TIME=true  # Optional! If set to true, this will add the current time to the prompt.# Set list of themes to pick from when loading at random
-
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

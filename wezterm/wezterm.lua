@@ -8,19 +8,17 @@ local config = wezterm.config_builder();
 config.font = wezterm.font('JetBrains Mono')
 
 config.automatically_reload_config = true
-config.front_end = "OpenGL";
---config.color_scheme = 'Catppuccin Frappé (Gogh)';
+-- config.color_scheme = 'Catppuccin Frappé (Gogh)';
+config.color_scheme = 'Catppuccin Mocha';
 --config.color_scheme = 'Zenburn (base16)';
-config.color_scheme = 'wilmersdorf'
+--config.color_scheme = 'wilmersdorf'
 config.font_size = 11.0;
 config.initial_rows = 53;
 config.initial_cols = 230;
-config.window_decorations = "NONE";
-config.enable_wayland = false;
-config.max_fps = 120;
+config.enable_wayland = true;
+config.max_fps = 240;
 config.animation_fps = 1;
 config.enable_scroll_bar = false;
-config.webgpu_power_preference = "HighPerformance";
 config.warn_about_missing_glyphs = false;
 
 wezterm.on('gui-startup', function(cmd)

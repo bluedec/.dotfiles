@@ -16,6 +16,17 @@ vim.lsp.enable('somesass_ls')
 vim.lsp.enable('cssls')
 vim.lsp.enable('csharp_ls')
 vim.lsp.enable('zls');
+vim.lsp.enable('pyright');
+vim.lsp.enable('htmx')
+vim.lsp.enable('jinja_lsp')
+
+vim.filetype.add {
+  extension = {
+    jinja = 'jinja',
+    jinja2 = 'jinja',
+    j2 = 'jinja',
+  },
+}
 
 for _, server in ipairs(servers) do
   require("language-servers." .. server)

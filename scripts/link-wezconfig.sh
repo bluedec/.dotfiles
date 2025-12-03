@@ -4,10 +4,10 @@
 DOTFILES_DIR="$HOME/Personal/dotfiles"
 
 # Symlink target location
-TARGET="$HOME/.wezterm"
+TARGET="$HOME/.config/wezterm/wezterm.lua"
 
 # Source config files inside your dotfiles repo
-WEZTERM_SOURCE="$DOTFILES_DIR/wezterm/.wezterm.lua"
+WEZTERM_SOURCE="$DOTFILES_DIR/wezterm/wezterm.lua"
 
 echo "Creating symlink for the Wezterm config..."
 

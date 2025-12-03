@@ -11,8 +11,9 @@ vim.opt.wildignore:append "**/node_modules/*"
 vim.opt.wrap = false
 vim.opt.undofile = true;
 vim.opt.swapfile = false;
-vim.opt.verbose = 0;
-vim.lsp.set_log_level("OFF")
+vim.opt.scrolloff = 9;
 
+-- Language Server Protocol options
+vim.lsp.set_log_level("OFF")
 
 
