@@ -10,6 +10,8 @@
     ./hardware-configuration.nix
   ];
 
+  system.stateVersion = "24.05";
+
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "nixos";
@@ -17,46 +19,56 @@
   time.timeZone = "America/Argentina/Buenos_Aires";
 
   #############################
-  ## NVIDIA Drivers
+  ## Graphics
   #############################
-  hardware.opengl.enable = true;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  #############################
-  ## Variables ##
-  #############################
-  environment.variables = {
-     XCURSOR_THEME = "Bibata-Modern-Ice";
-     XCURSOR_SIZE = "24";
-  };
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
     open = false;
     nvidiaSettings = true;
   };
+  hardware.graphics = {
+	enable32Bit = true;
+	enable = true;
+  };
 
   #############################
-  ## Wayland + Hyperland
+  ## Variables ##
+  #############################
+  environment.variables = {
+	XCURSOR_THEME = "Bibata-Modern-Ice";
+	XCURSOR_SIZE = "24";
+	GOOGLE_CHROME_FLAGS = "--disable-gpu --use-gl=desktop";
+	CHROMIUM_FLAGS = "--disable-gpu --use-gl=desktop";
+	VIVALDI_FLAGS = "--disable-gpu --use-gl=desktop";
+	__GLX_VENDOR_LIBRARY_NAME = "nvidia";
+	WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+
+  #############################
+  ## Wayland + Hyperland ##
   #############################
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-  programs.hyprland.withUWSM = true;
+
+  #############################
+  ## Shell & Terminal
+  #############################
+  users.defaultUserShell = pkgs.zsh;
 
   #############################
   ## Zsh ## 
   #############################
   programs.starship.enable = false;
   programs.zsh.enable = true;
-  programs.zsh.ohMyZsh {
+  programs.zsh.ohMyZsh = {
 	enable = true;
 	theme = "af-magic"; # or another theme
 	plugins = [ "git" "z" "sudo" ];
-  }
+  };
 
   # wlroots backend
   programs.waybar.enable = true;
@@ -80,12 +92,6 @@
     jack.enable = true;
   };
 
-  #############################
-  ## Shell & Terminal
-  #############################
-  programs.zsh.enable = true;
-
-  users.defaultUserShell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [
     # Terminals
@@ -94,8 +100,23 @@
     # Terminal Utilities
     lsd
 
+    # Social
+    discord-ptb
+
     # Browsers
     google-chrome
+    (google-chrome.override {
+      commandLineArgs = [
+        # Flag to fix the main flicker (which you already identified)
+        "--disable-gpu-compositing"
+        
+        # Keep it running in native Wayland mode (if desired)
+        "--ozone-platform=wayland" 
+      ];
+    })
+    firefox
+    vivaldi
+    vivaldi-ffmpeg-codecs
 
     # Programming
     rustup
@@ -120,6 +141,7 @@
     wl-clipboard
     grim
     slurp
+    hyprpaper
     swaybg
 
     # Lock + logout
