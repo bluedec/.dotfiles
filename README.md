@@ -1,3 +1,5 @@
+### 󱄛  Welcome!
+
 # 🛠️ Dotfiles Setup
 
 This repository contains my personal **dotfiles** — configuration files and scripts to set up a new machine with my preferred development environment.
@@ -18,7 +20,9 @@ It includes configs for:
 To set up everything:
 
 ```bash
-git clone git@github.com:yourusername/dotfiles.git ~/.files
-cd ~/.files
-bash install.sh
+git clone git@github.com:bluedec/dotfiles.git ~/Personal/dotfiles
+cd ~/Personal/dotfiles
+
+sudo ./scripts/link-configs-sudo.sh
+./scripts/link-configs.sh
 

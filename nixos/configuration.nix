@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 {
+  # ...
+
   #############################
   ## Basic System Settings
   #############################
   imports = [
     ./hardware-configuration.nix
   ];
-
-  system.stateVersion = "24.05";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -22,6 +22,14 @@
   hardware.opengl.enable = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  #############################
+  ## Variables ##
+  #############################
+  environment.variables = {
+     XCURSOR_THEME = "Bibata-Modern-Ice";
+     XCURSOR_SIZE = "24";
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -37,6 +45,18 @@
     enable = true;
     xwayland.enable = true;
   };
+  programs.hyprland.withUWSM = true;
+
+  #############################
+  ## Zsh ## 
+  #############################
+  programs.starship.enable = false;
+  programs.zsh.enable = true;
+  programs.zsh.ohMyZsh {
+	enable = true;
+	theme = "af-magic"; # or another theme
+	plugins = [ "git" "z" "sudo" ];
+  }
 
   # wlroots backend
   programs.waybar.enable = true;
@@ -45,7 +65,7 @@
   services.greetd.settings = {
     default_session = {
       command = "${pkgs.hyprland}/bin/Hyprland";
-      user = "jesus"; # <-- CHANGE THIS
+      user = "julien";
     };
   };
 
@@ -67,11 +87,12 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  programs.starship.enable = true;
-
   environment.systemPackages = with pkgs; [
     # Terminals
     wezterm
+
+    # Terminal Utilities
+    lsd
 
     # Browsers
     google-chrome
@@ -94,6 +115,7 @@
     neovim
 
     # Wayland utilities
+    wofi
     wlr-randr
     wl-clipboard
     grim
@@ -108,6 +130,9 @@
     htop
     btop
     jq
+
+    # cursor theme
+    bibata-cursors
   ];
 
   #############################
@@ -118,7 +143,7 @@
   #############################
   ## User config
   #############################
-  users.users.jesus = {
+  users.users.julien = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "docker" ];
   };
