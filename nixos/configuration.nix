@@ -3,12 +3,19 @@
 {
   # ...
 
+  # Note from Jesu
+  # To rebuild the system, use sudo ```nixos-rebuild switch --flake /etc/nixos#my-hostname```
+  # since we are using flakes
+
+
   #############################
   ## Basic System Settings
   #############################
   imports = [
     ./hardware-configuration.nix
   ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "24.05";
 
@@ -19,8 +26,33 @@
   time.timeZone = "America/Argentina/Buenos_Aires";
 
   #############################
+  ## Stylix
+  #############################
+  #stylix.enable = true;
+  #stylix.base16Scheme = {
+  #  base00 = "181818";
+  #  base01 = "282828";
+  #  base02 = "383838";
+  #  base03 = "585858";
+  #  base04 = "b8b8b8";
+  #  base05 = "d8d8d8";
+  #  base06 = "e8e8e8";
+  #  base07 = "f8f8f8";
+  #  base08 = "ab4642";
+  #  base09 = "dc9656";
+  #  base0A = "f7ca88";
+  #  base0B = "a1b56c";
+  #  base0C = "86c1b9";
+  #  base0D = "7cafc2";
+  #  base0E = "ba8baf";
+  #  base0F = "a16946";
+  #};
+  #stylix.image = /home/julien/Wallpapers/corgi-succeed.jpg;
+
+  #############################
   ## Graphics
   #############################
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
@@ -99,6 +131,7 @@
 
     # Terminal Utilities
     lsd
+    fzf
 
     # Social
     discord-ptb
@@ -144,6 +177,9 @@
     hyprpaper
     swaybg
 
+    # file search
+    evince
+
     # Lock + logout
     wlogout
     swaylock-effects
@@ -153,9 +189,35 @@
     btop
     jq
 
-    # cursor theme
+    # Cursor Theme
     bibata-cursors
+
+    # Sound Control
+    pavucontrol
+
+    # Database Manager
+    dbeaver-bin
+
+    # To run programs without installing them
+    comma
+
+    
   ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    font-awesome
+    noto-fonts
+    noto-fonts-emoji
+  ];
+
+  #############################
+  ## DIRENV
+  #############################
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+  
 
   #############################
   ## Chrome Sandbox Fix

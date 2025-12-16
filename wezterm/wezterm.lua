@@ -50,6 +50,11 @@ end)
 
 config.leader = { key = '`', mods = 'CTRL' }
 config.keys = {
+  {
+    key = "J",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SendString("nvim .\n"),
+  },
   { -- Open backend and frontend on new tabs
   key = 'F1', mods = 'NONE', action = act.EmitEvent("spawn-main-workplace")
   },

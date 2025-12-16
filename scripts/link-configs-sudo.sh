@@ -26,4 +26,15 @@ fi
 ln -sf "$PROJECT_ROOT/nixos/hardware-configuration.nix" "/etc/nixos/hardware-configuration.nix"
 ###################################################################
 
+# flake.nix
+###################################################################
+# Create backup for flake.nix
+if [ -e "/etc/nixos/flake.nix" ]; then
+  echo "Backing up existing /etc/nixos/flake.nix to /etc/nixos/flake.nix.bak"
+  mv "/etc/nixos/flake.nix" "/etc/nixos/flake.nix.bak"
+fi
+# Create symlink for flake.nix
+ln -sf "$PROJECT_ROOT/nixos/flake.nix" "/etc/nixos/flake.nix"
+###################################################################
+
 echo "Done."

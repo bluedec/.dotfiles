@@ -4,7 +4,6 @@ TARGET_NIX_CONFIG_PATH="/etc/nixos"
 HYPR_TARGET_PATH="$HOME/.config/hypr"
 
 
-
 echo "Creating symlinks for Hyprland configs..."
 
 # hyprland.conf
