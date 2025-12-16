@@ -14,7 +14,7 @@ echo "Creating symlink for the Wezterm config..."
 # Create symlink for personal config
 if [ -e "$TARGET" ]; then
   echo "Backing up existing $TARGET to $TARGET.bak"
-  mv "$TARGET" "$TARGET.bak"
+  cp -L "$TARGET" "$TARGET.bak"
 fi
 ln -sf "$WEZTERM_SOURCE" "$TARGET"
 echo "Symlinked the Wezterm config."

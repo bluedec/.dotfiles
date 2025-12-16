@@ -152,7 +152,7 @@
     vivaldi-ffmpeg-codecs
 
     # Programming
-    rustup
+    rustc
     cargo
     rust-analyzer
 
@@ -209,7 +209,7 @@
     nerd-fonts.fira-code
     font-awesome
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
   #############################

@@ -14,7 +14,7 @@ echo "Creating symlink for ZSH config..."
 # Create symlink for personal config
 if [ -e "$TARGET" ]; then
   echo "Backing up existing $TARGET to $TARGET.bak"
-  mv "$TARGET" "$TARGET.bak"
+  cp -L "$TARGET" "$TARGET.bak"
 fi
 ln -sf "$SOURCE_ZSH" "$TARGET"
 echo "Symlinked ZSH config."

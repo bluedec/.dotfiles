@@ -23,7 +23,7 @@ fi
 # Create symlink for i3 config
 if [ -e "$TARGET_I3" ]; then
   echo "Backing up existing $TARGET_I3 to $TARGET_I3.bak"
-  mv "$TARGET_I3" "$TARGET_I3.bak"
+  cp -L "$TARGET_I3" "$TARGET_I3.bak"
 fi
 ln -sf "$SOURCE_I3" "$TARGET_I3"
 echo "Symlinked i3 config."
@@ -31,7 +31,7 @@ echo "Symlinked i3 config."
 # Create symlink for Picom config
 if [ -e "$TARGET_PICOM" ]; then
   echo "Backing up existing $TARGET_PICOM to $TARGET_PICOM.bak"
-  mv "$TARGET_PICOM" "$TARGET_PICOM.bak"
+  cp -L "$TARGET_PICOM" "$TARGET_PICOM.bak"
 fi
 ln -sf "$SOURCE_PICOM" "$TARGET_PICOM"
 echo "Symlinked personal Picom config."

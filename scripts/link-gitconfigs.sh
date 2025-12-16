@@ -18,7 +18,7 @@ echo "Creating symlinks for Git configs..."
 # Create symlink for base config
 if [ -e "$TARGET" ]; then
   echo "Backing up existing $TARGET to $TARGET.bak"
-  mv "$TARGET" "$TARGET.bak"
+  cp -L "$TARGET" "$TARGET.bak"
 fi
 ln -sf "$SOURCE" "$TARGET"
 echo "Symlinked Git config."
@@ -26,7 +26,7 @@ echo "Symlinked Git config."
 # Create symlink for personal config
 if [ -e "$TARGET_PERSONAL" ]; then
   echo "Backing up existing $TARGET_PERSONAL to $TARGET_PERSONAL.bak"
-  mv "$TARGET_PERSONAL" "$TARGET_PERSONAL.bak"
+  cp -L "$TARGET_PERSONAL" "$TARGET_PERSONAL.bak"
 fi
 ln -sf "$SOURCE_PERSONAL" "$TARGET_PERSONAL"
 echo "Symlinked personal Git config."
@@ -34,7 +34,7 @@ echo "Symlinked personal Git config."
 # Create symlink for work config
 if [ -e "$TARGET_WORK" ]; then
   echo "Backing up existing $TARGET_WORK to $TARGET_WORK.bak"
-  mv "$TARGET_WORK" "$TARGET_WORK.bak"
+  cp -L "$TARGET_WORK" "$TARGET_WORK.bak"
 fi
 ln -sf "$SOURCE_WORK" "$TARGET_WORK"
 echo "Symlinked work Git config."
