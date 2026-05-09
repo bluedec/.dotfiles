@@ -4,6 +4,11 @@ require("config.options");
 
 vim.cmd.colorscheme("kanagawa");
 
+-- Make floating windows transparent
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+
+
 -- Override the default signature help handler
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   vim.lsp.handlers.signature_help, {

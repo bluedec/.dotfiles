@@ -23,6 +23,5 @@ return {
         reindent_linewise = true,
       },
     })
-    
   end,
 }

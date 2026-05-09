@@ -13,6 +13,10 @@ alias st="git status"
 alias df="git diff"
 alias nixc="sudo nvim /etc/nixos/configuration.nix"
 alias hypc="nvim ~/.config/hypr/hyprland.conf"
+alias rebuild='sudo nixos-rebuild switch --flake ~/Personal/dotfiles/nixos#nixos'
+
+# Accept suggestion with Ctrl + F
+bindkey '^L' autosuggest-accept
 
 typeset -A locations
 locations=(
@@ -129,6 +133,12 @@ alias l='lsd -lh'      # long format
 alias la='lsd -lah'    # all files, long
 alias ll='lsd -lh'     # long format, human-readable
 alias lsa='lsd -lah'   # all files, human-readable
+
+export PURE_PROMPT_SYMBOL="→" 
+
+# Load Pure prompt
+autoload -U promptinit; promptinit
+prompt pure
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

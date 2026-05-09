@@ -14,6 +14,6 @@ vim.opt.swapfile = false;
 vim.opt.scrolloff = 9;
 
 -- Language Server Protocol options
-vim.lsp.set_log_level("OFF")
+-- vim.lsp.set_log_level("OFF")
 
 

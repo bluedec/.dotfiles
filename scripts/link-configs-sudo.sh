@@ -37,4 +37,19 @@ fi
 # Create symlink for flake.nix
 ln -sf "$PROJECT_ROOT/nixos/flake.nix" "/etc/nixos/flake.nix"
 
+###################################################################
+# zsh.nix
+###################################################################
+# Create folder if it doesn't exist
+if [ ! -d "/etc/nixos/modules" ]; then
+  mkdir "/etc/nixos/modules"
+fi
+# Create backup for zsh.nix
+if [ -e "/etc/nixos/modules/zsh.nix" ]; then
+  echo "Backing up existing /etc/nixos/modules/zsh.nix to /etc/nixos/modules/zsh.nix.bak"
+  cp -L "/etc/nixos/modules/zsh.nix" "/etc/nixos/modules/zsh.nix.bak"
+fi
+# Create symlink for zsh.nix
+ln -sf "$PROJECT_ROOT/nixos/modules/zsh.nix" "/etc/nixos/modules/zsh.nix"
+
 echo "Done."

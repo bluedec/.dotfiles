@@ -3,11 +3,6 @@
 {
   # ...
 
-  # Note from Jesu
-  # To rebuild the system, use sudo ```nixos-rebuild switch --flake /etc/nixos#my-hostname```
-  # since we are using flakes
-
-
   #############################
   ## Basic System Settings
   #############################
@@ -15,7 +10,7 @@
     ./hardware-configuration.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "24.05";
 
@@ -23,31 +18,18 @@
 
   networking.hostName = "nixos";
 
-  time.timeZone = "America/Argentina/Buenos_Aires";
+  time.timeZone = "America/Argentina/Cordoba";
+  time.hardwareClockInLocalTime = false;
+  services.timesyncd = {
+     enable = true;
+     servers = [
+       "0.pool.ntp.org"
+       "1.pool.ntp.org"
+       "2.pool.ntp.org"
+     ];
+  };
+  environment.variables.TZ = "America/Argentina/Cordoba";
 
-  #############################
-  ## Stylix
-  #############################
-  #stylix.enable = true;
-  #stylix.base16Scheme = {
-  #  base00 = "181818";
-  #  base01 = "282828";
-  #  base02 = "383838";
-  #  base03 = "585858";
-  #  base04 = "b8b8b8";
-  #  base05 = "d8d8d8";
-  #  base06 = "e8e8e8";
-  #  base07 = "f8f8f8";
-  #  base08 = "ab4642";
-  #  base09 = "dc9656";
-  #  base0A = "f7ca88";
-  #  base0B = "a1b56c";
-  #  base0C = "86c1b9";
-  #  base0D = "7cafc2";
-  #  base0E = "ba8baf";
-  #  base0F = "a16946";
-  #};
-  #stylix.image = /home/julien/Wallpapers/corgi-succeed.jpg;
 
   #############################
   ## Graphics
@@ -63,6 +45,11 @@
 	enable32Bit = true;
 	enable = true;
   };
+  
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true; # optional but recommended (GUI helper)
+  
+
 
   #############################
   ## Variables ##
@@ -77,6 +64,21 @@
 	WLR_NO_HARDWARE_CURSORS = "1";
   };
 
+  #############################
+  ## Thunar File Manager ##
+  #############################
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin # For handling .zip, .tar, etc.
+      thunar-volman         # For volume management (USB drives, etc.)
+    ];
+  };
+  programs.xfconf.enable = true; # Required for Thunar settings
+
+  services.gvfs.enable = true; # For mount/trash functionality
+  services.tumbler.enable = true; # For image thumbnails
+
 
   #############################
   ## Wayland + Hyperland ##
@@ -86,20 +88,25 @@
     xwayland.enable = true;
   };
 
-  #############################
-  ## Shell & Terminal
-  #############################
-  users.defaultUserShell = pkgs.zsh;
 
   #############################
   ## Zsh ## 
   #############################
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh = {
+    enable = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
   programs.starship.enable = false;
-  programs.zsh.enable = true;
   programs.zsh.ohMyZsh = {
 	enable = true;
-	theme = "af-magic"; # or another theme
-	plugins = [ "git" "z" "sudo" ];
+	# theme = "af-magic"; # or another theme
+	plugins = [ 
+  	  "git" 
+  	  "z"
+  	  "sudo" 
+	];
   };
 
   # wlroots backend
@@ -114,7 +121,7 @@
   };
 
   #############################
-  ## Audio - PipeWire
+  ## Audio - PipeWire ##
   #############################
   services.pipewire = {
     enable = true;
@@ -125,6 +132,15 @@
   };
 
 
+  #############################
+  ## OBS ##
+  #############################
+  programs.obs-studio.enableVirtualCamera = true;
+
+
+  #############################
+  ## System Packages ##
+  #############################
   environment.systemPackages = with pkgs; [
     # Terminals
     wezterm
@@ -132,6 +148,13 @@
     # Terminal Utilities
     lsd
     fzf
+
+    # Zsh
+    zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    pure-prompt
+
 
     # Social
     discord-ptb
@@ -152,16 +175,28 @@
     vivaldi-ffmpeg-codecs
 
     # Programming
+    lua
     rustc
     cargo
     rust-analyzer
 
+    # haskell
+    # (not stable currently) ghc
+    # (not stable currently) cabal-install
+
+    # Language Servers (LSP's)
+    # (not stable currently) haskell-language-server
+    lua-language-server
+
+    # python
     python3
     python3Packages.pip
 
+    # node
     nodejs_22
     yarn
 
+    # generic
     git
     wget
     curl
@@ -201,12 +236,45 @@
     # To run programs without installing them
     comma
 
-    
+    # Thunar (file explorer) things
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.tumbler
+    xfce.xfconf
+    adwaita-icon-theme
+    papirus-icon-theme
+    arc-theme
+
+    # Image editing
+    gimp
+
+    # LibreOffice
+    libreoffice
+
+    # OBS
+    (pkgs.wrapOBS {
+      plugins = with pkgs.obs-studio-plugins; [
+	wlrobs
+	obs-backgroundremoval
+	obs-pipewire-audio-capture
+	obs-gstreamer
+	obs-vkcapture
+      ];
+    })
+
+    # Sensors?
+    lm_sensors
+
+    # Usb utilities
+    usbutils
   ];
+
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
+    nerd-fonts.caskaydia-mono
+    nerd-fonts.ubuntu-mono
     font-awesome
     noto-fonts
     noto-fonts-color-emoji

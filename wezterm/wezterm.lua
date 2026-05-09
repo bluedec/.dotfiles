@@ -4,14 +4,25 @@ local act = wezterm.action;
 local config = wezterm.config_builder();
 
 
---config.font = wezterm.font_with_fallback { 'monospace', 'JetBrains Mono' }
-config.font = wezterm.font('JetBrains Mono')
+config.font = wezterm.font_with_fallback { 'monospace', 'JetBrains Mono' }
+config.font = wezterm.font {
+  --family = 'Ubuntu Mono',
+  --family = 'JetBrains Mono',
+  family = 'CaskaydiaMono Nerd Font',
+  --weight = 700
+}
+
+visual_bell = {
+  fade_in_function = "EaseIn",
+  fade_out_function = "EaseOut",
+}
 
 config.automatically_reload_config = true
--- config.color_scheme = 'Catppuccin Frappé (Gogh)';
-config.color_scheme = 'Catppuccin Mocha';
+--config.color_scheme = 'Catppuccin Frappé (Gogh)';
+--config.color_scheme = 'Catppuccin Mocha';
 --config.color_scheme = 'Zenburn (base16)';
 --config.color_scheme = 'wilmersdorf'
+config.color_scheme = 'Kanagawa (Gogh)'
 config.font_size = 11.0;
 config.initial_rows = 53;
 config.initial_cols = 230;
