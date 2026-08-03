@@ -12,6 +12,7 @@ alias zshf="nvim ~/.zshrc"
 alias st="git status"
 alias df="git diff"
 alias nixc="sudo nvim /etc/nixos/configuration.nix"
+alias nvimf="nvim ~/Personal/dotfiles/.config/nvim"
 alias hypc="nvim ~/.config/hypr/hyprland.conf"
 alias rebuild='sudo nixos-rebuild switch'
 

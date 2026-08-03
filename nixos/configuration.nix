@@ -10,7 +10,15 @@
     ./hardware-configuration.nix
   ];
 
-  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ 
+    "nix-command"
+    "flakes"
+  ];
+
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
+  };
 
   system.stateVersion = "24.05";
 

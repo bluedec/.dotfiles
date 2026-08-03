@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
+shopt -s nullglob dotglob
 
-if [ ! -d "$HOME/.config" ]; then
-  mkdir "$HOME/.config"
-fi
-./scripts/link-gitconfigs.sh
-./scripts/link-nvimconfig.sh
-./scripts/link-zshconfig.sh
-./scripts/link-wezconfig.sh
+mkdir -p "$HOME/.config"
 
-for item in ~/Personal/dotfiles/.config/*; do
-  ln -s "$item" ~/.config/
+for item in "$HOME"/Personal/dotfiles/.config/*; do
+  ln -sfn "$item" "$HOME/.config/$(basename "$item")"
 done
+
+for item in "$HOME"/Personal/dotfiles/.base/*; do
+  ln -sfn "$item" "$HOME/$(basename "$item")"
+done
+
+# sudo rm -rf /etc/nixos
+# sudo ln -s "$HOME/Personal/dotfiles/nixos" /etc/nixos
 
 echo "Finished!"
 

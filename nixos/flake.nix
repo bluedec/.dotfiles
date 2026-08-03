@@ -1,12 +1,12 @@
 {
-  description = "My NixOS configuration with Stylix";
+  description = "My NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
+	    url = "github:nix-community/stylix/release-26.05";
+	    inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -19,7 +19,7 @@
 
       modules = [
         ./configuration.nix
-        stylix.nixosModules.stylix
+	stylix.nixosModules.stylix
       ];
     };
   };
