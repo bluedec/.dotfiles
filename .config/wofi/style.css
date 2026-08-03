@@ -1,0 +1,51 @@
+window {
+  /* Keep this completely stripped down to prevent ghost boxes */
+  background-color: transparent;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+}
+
+#outer-box {
+  /* Move the main border, background, and rounding here */
+  margin: 10px;
+  background-color: #1e1e2e;
+  border: 2px solid #89b4fa;
+  border-radius: 12px;
+}
+
+#input {
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
+  color: #cdd6f4;
+  background-color: #313244;
+  padding: 10px;
+}
+
+#inner-box {
+  margin: 8px;
+  background-color: transparent;
+}
+
+#scroll {
+  margin: 0px;
+}
+
+#text {
+  color: #cdd6f4;
+  margin-left: 15px;
+}
+
+#entry {
+  border-radius: 8px;
+  padding: 6px;
+}
+
+#entry:selected {
+  background-color: #89b4fa;
+}
+
+#entry:selected #text {
+  color: #1e1e2e;
+}
+

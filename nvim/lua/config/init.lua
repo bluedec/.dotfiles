@@ -4,10 +4,28 @@ require("config.options");
 
 vim.cmd.colorscheme("kanagawa");
 
--- Make floating windows transparent
+--Make floating windows transparent
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+vim.api.nvim_set_hl(0, "FloatBorder", {
+  bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg,
+  fg = vim.api.nvim_get_hl(0, { name = "FloatBorder" }).fg,
+})
 
+--vim.api.nvim_set_hl(0, "Pmenu", {
+--  bg = "none",
+--})
+--
+--vim.api.nvim_set_hl(0, "PmenuBorder", {
+--  bg = "none",
+--})
+--
+--vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", {
+--  bg = "none",
+--})
+--
+--vim.api.nvim_set_hl(0, "BlinkCmpMenu", {
+--  bg = "none",
+--})
 
 -- Override the default signature help handler
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
@@ -29,4 +47,10 @@ vim.g.clipboard = {
     ["*"] = "wl-paste --no-newline",
   },
 }
+
+vim.filetype.add({
+  extension = {
+    pseudo = "pseudo"
+  }
+})
 

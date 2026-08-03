@@ -1,24 +1,32 @@
 require('config')
-require("lazy").setup("plugins");
+require("lazy").setup({
+  spec = {
+    { import = "plugins" }
+  },
+  change_detection = {
+    enable = true,
+    notify = true,
+  }
+});
 
 vim.lsp.enable({
   "luals",
-  "hls"
+  "hls",
+  "py",
+  "tailwind",
+  "tls",
+  "clangd",
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
-      vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'fuzzy', 'popup' }
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-      vim.keymap.set('i', '<C-Space>', function()
-        vim.lsp.completion.get()
-      end)
+      -- Nothing else needed for completion.
     end
   end,
 })
-
 -- Diagnostics
 vim.diagnostic.config({
   -- Use the default configuration

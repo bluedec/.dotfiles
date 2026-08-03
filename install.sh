@@ -9,6 +9,10 @@ fi
 ./scripts/link-zshconfig.sh
 ./scripts/link-wezconfig.sh
 
+for item in ~/Personal/dotfiles/.config/*; do
+  ln -s "$item" ~/.config/
+done
+
 echo "Finished!"
 
 

@@ -13,7 +13,7 @@ alias st="git status"
 alias df="git diff"
 alias nixc="sudo nvim /etc/nixos/configuration.nix"
 alias hypc="nvim ~/.config/hypr/hyprland.conf"
-alias rebuild='sudo nixos-rebuild switch --flake ~/Personal/dotfiles/nixos#nixos'
+alias rebuild='sudo nixos-rebuild switch'
 
 # Accept suggestion with Ctrl + F
 bindkey '^L' autosuggest-accept

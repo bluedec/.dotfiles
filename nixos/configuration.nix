@@ -46,9 +46,10 @@
 	enable = true;
   };
   
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true; # optional but recommended (GUI helper)
-  
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true; # optional: provides the GUI manager you linked to 'on-click'
+ 
 
 
   #############################
@@ -187,6 +188,12 @@
     # Language Servers (LSP's)
     # (not stable currently) haskell-language-server
     lua-language-server
+    pyright
+    clang-tools
+    typescript
+    typescript-language-server
+    tailwindcss-language-server
+    
 
     # python
     python3
@@ -202,6 +209,7 @@
     curl
     unzip
     neovim
+    vlc
 
     # Wayland utilities
     wofi
@@ -211,6 +219,7 @@
     slurp
     hyprpaper
     swaybg
+    wf-recorder
 
     # file search
     evince
@@ -251,6 +260,9 @@
     # LibreOffice
     libreoffice
 
+    # Math
+    graphviz
+
     # OBS
     (pkgs.wrapOBS {
       plugins = with pkgs.obs-studio-plugins; [
@@ -267,6 +279,20 @@
 
     # Usb utilities
     usbutils
+
+    # SDL3
+    sdl3
+
+    spotify
+
+    wttrbar
+
+    unzip
+
+    efibootmgr
+
+    sbctl
+
   ];
 
 
