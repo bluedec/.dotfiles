@@ -16,6 +16,7 @@ vim.lsp.enable({
   "tailwind",
   "tls",
   "clangd",
+  "nix",
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # ...
@@ -10,15 +10,17 @@
     ./hardware-configuration.nix
   ];
 
+
   nix.settings.experimental-features = [ 
     "nix-command"
     "flakes"
   ];
 
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
-  };
+
+  # stylix = {
+  #   enable = true;
+  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark.yaml";
+  # };
 
   system.stateVersion = "24.05";
 
@@ -42,22 +44,26 @@
   #############################
   ## Graphics
   #############################
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    open = false;
-    nvidiaSettings = true;
-  };
   hardware.graphics = {
 	enable32Bit = true;
 	enable = true;
   };
   
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    powerManagement.enable = false;
+    modesetting.enable = true;
+    # GTX 1060 is Pascal, so DO NOT use the open kernel module.
+    open = false;
+  };
+
+
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.enableRedistributableFirmware = true;
   services.blueman.enable = true; # optional: provides the GUI manager you linked to 'on-click'
- 
 
 
   #############################
@@ -116,17 +122,6 @@
   	  "z"
   	  "sudo" 
 	];
-  };
-
-  # wlroots backend
-  programs.waybar.enable = true;
-  services.greetd.enable = true;
-
-  services.greetd.settings = {
-    default_session = {
-      command = "${pkgs.hyprland}/bin/Hyprland";
-      user = "julien";
-    };
   };
 
   #############################
@@ -301,6 +296,14 @@
 
     sbctl
 
+    kitty
+
+    nixd	     # lsp
+    nixfmt-rfc-style # formatter (recommended)
+
+    # Claude
+    claude-code
+
   ];
 
 
@@ -337,7 +340,11 @@
   #############################
   ## Bootloader
   #############################
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote = {
+	  enable = true;
+	  pkiBundle = "/var/lib/sbctl";
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   #############################
@@ -359,6 +366,17 @@
 
     # Optional: enable GPU support inside docker
     # extraOptions = "--add-runtime=nvidia=/run/current-system/sw/bin/nvidia-container-runtime";
+  };
+
+  programs.waybar.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        user = "greeter";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd start-hyprland";
+      };
+    };
   };
 }
 

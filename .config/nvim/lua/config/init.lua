@@ -1,15 +1,15 @@
 require("config.lazy");
 require("config.mappings");
 require("config.options");
+require("config.colors");
 
-vim.cmd.colorscheme("kanagawa");
 
 --Make floating windows transparent
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, "FloatBorder", {
-  bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg,
-  fg = vim.api.nvim_get_hl(0, { name = "FloatBorder" }).fg,
-})
+--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--vim.api.nvim_set_hl(0, "FloatBorder", {
+--  bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg,
+--  fg = vim.api.nvim_get_hl(0, { name = "FloatBorder" }).fg,
+--})
 
 --vim.api.nvim_set_hl(0, "Pmenu", {
 --  bg = "none",
@@ -28,13 +28,13 @@ vim.api.nvim_set_hl(0, "FloatBorder", {
 --})
 
 -- Override the default signature help handler
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = "rounded",  -- optional: "single", "double", "shadow", etc.
-    max_width = 20,      -- upper limit
-    max_height = 10,     -- upper limit
-  }
-)
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+--   vim.lsp.handlers.signature_help, {
+--     border = "rounded",  -- optional: "single", "double", "shadow", etc.
+--     max_width = 20,      -- upper limit
+--     max_height = 10,     -- upper limit
+--   }
+-- )
 
 vim.g.clipboard = {
   name = "wl-clipboard",

@@ -27,7 +27,6 @@ locations=(
   pers  "$HOME/Personal/"
   wez   "$HOME/Personal/dotfiles/wezterm/wezterm.lua"
   loc   "$HOME/.local/"
-  i3    "$HOME/.config/i3"
   conf  "$HOME/.config/"
   proy  "$HOME/Personal/proyects"
   nix   "/etc/nixos/"

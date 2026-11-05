@@ -1,5 +1,47 @@
 return {
   { "savq/melange-nvim" },
+  {
+    "rebelot/kanagawa.nvim",
+    config = function ()
+      --vim.cmd("colorscheme kanagawa-dragon")
+
+    end
+  },
+  {
+    "ellisonleao/gruvbox.nvim",
+    config = function ()
+      require("gruvbox").setup({
+        terminal_colors = true, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = true,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        overrides = {},
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+      vim.o.background = "dark";
+    end
+  },
+  {
+    "phha/zenburn.nvim",
+    config = function ()
+      --vim.cmd("colorscheme zenburn");
+    end
+  }
   --{
   --  "catppuccin/nvim",
   --  name = "catppuccin",
